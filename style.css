@@ -125,6 +125,33 @@ button {
     background-color: #a1a1a1;
 }
 
+.name-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+.button-delete {
+    background: none;
+    border: none;
+    color: #ff4444;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.button-delete:hover {
+    color: #cc0000;
+}
+
+.contador {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
 /* Listas */
 ul {
     list-style-type: none;
