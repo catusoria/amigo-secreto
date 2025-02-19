@@ -34,7 +34,7 @@ function eliminarAmigo(index) {
     contador--;
     actualizarListaAmigos();
     actualizarContador();
-
+}
 // Función para actualizar la lista visual de amigos
 function actualizarListaAmigos() {
     const listaAmigos = document.getElementById('listaAmigos');
