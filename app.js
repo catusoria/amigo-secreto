@@ -17,8 +17,7 @@ function agregarAmigo() {
     // Agregar el nombre al array
     amigos.push(nombre);
     contador++;
-    console.log(contador);
-    
+        
     // Actualizar la lista visual
     actualizarListaAmigos();
     actualizarContador();
@@ -35,6 +34,7 @@ function eliminarAmigo(index) {
     actualizarListaAmigos();
     actualizarContador();
 }
+
 // Función para actualizar la lista visual de amigos
 function actualizarListaAmigos() {
     const listaAmigos = document.getElementById('listaAmigos');
@@ -72,6 +72,42 @@ function actualizarContador() {
     }
 }
 
+// Función para realizar el sorteo y mostrar un único ganador al azar
+function sortearAmigo() {
+    // Verificar que haya al menos un nombre en la lista
+    if (amigos.length === 0) {
+        alert('No hay participantes para realizar el sorteo');
+        return;
+    }
+    
+    // Seleccionar un nombre al azar
+    const indiceAleatorio = Math.floor(Math.random() * amigos.length);
+    const ganador = amigos[indiceAleatorio];
+    
+    // Mostrar el resultado
+    mostrarGanador(ganador);
+}
+
+// Función para mostrar el resultado del sorteo
+function mostrarGanador(ganador) {
+    const resultado = document.getElementById('resultado');
+    
+    // Crear efecto de sorteo (opcional)
+    resultado.innerHTML = '<div class="sorteo-animacion">Sorteando...</div>';
+    
+    // Mostrar el ganador después de un breve retraso para efecto visual
+    setTimeout(() => {
+        resultado.innerHTML = '';
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.className = 'ganador';
+        resultadoDiv.innerHTML = `
+            <h3>¡Resultado del sorteo!</h3>
+            <p>El ganador es: <strong>${ganador}</strong></p>
+        `;
+        resultado.appendChild(resultadoDiv);
+    }, 1000);
+}
+
 // Evento para permitir agregar amigos con al presionar Enter
 document.getElementById('amigo').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
@@ -86,4 +122,12 @@ if (!document.getElementById('contador')) {
     contadorDiv.className = 'contador';
     document.querySelector('.input-section').appendChild(contadorDiv);
     actualizarContador();
+}
+
+// Asegurarse de que existe el contenedor de resultado
+if (!document.getElementById('resultado')) {
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.id = 'resultado';
+    resultadoDiv.className = 'resultado';
+    document.querySelector('.input-section').appendChild(resultadoDiv);
 }
